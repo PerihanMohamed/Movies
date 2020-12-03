@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_populat"
+        android:title="@string/menu_Popular"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_top_rated"
+        android:title="@string/menu_top_rated"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_now_playing"
+        android:title="@string/menu_new_playing"
+        app:showAsAction="never" />
+
+
+
+</menu>
