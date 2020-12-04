@@ -4,4 +4,6 @@
     <string name="menu_top_rated">Top rated</string>
     <string name="menu_new_playing">Now playing</string>
     <string name="movie_poster">movie_poster</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,11 +1,9 @@
 package com.example.mymoviedatabase.paging
 
 import androidx.paging.PagingSource
-import com.example.Api_key
 import com.example.mymoviedatabase.data.ApiService
 
-import com.example.mymoviedatabase.model.PopularResponse
-import com.example.mymoviedatabase.model.ResultsItem
+import com.example.mymoviedatabase.model.Movie
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -16,28 +14,40 @@ private const val FIRST_PAGE = 1
 class PopularPagingSource(
     private val service: ApiService,
 
-) : PagingSource<Int, ResultsItem>() {
+) : PagingSource<Int, Movie>() {
 
 
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResultsItem> {
-        val position = params.key ?: GITHUB_STARTING_PAGE_INDEX
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
 
+//        return try {
+//            val position = params.key ?:0
+//            val response = service.getPopular(position)
+//            val photos = response.results
+//
+//            LoadResult.Page(
+//               data = photos,
+////                prevKey = if (position == GITHUB_STARTING_PAGE_INDEX) null else position - 1,
+////                nextKey = if (photos.isEmpty()) null else position + 1
+//                prevKey = if (position > 0) position - 1 else null,
+//                nextKey = if (position < response.totalPages) position + 1 else null
+//            )
+//        } catch (exception: IOException) {
+//            return LoadResult.Error(exception)
+//        } catch (exception: HttpException) {
+//            return LoadResult.Error(exception)
+//        }
 
         return try {
-
-            val response = service.getPopular(FIRST_PAGE  )
-            val photos = response.results
-
+            val nextPageNumber = params.key ?: 0
+            val response = service.getPopular(nextPageNumber)
             LoadResult.Page(
-                data = photos,
-                prevKey = if (position == GITHUB_STARTING_PAGE_INDEX) null else position - 1,
-                nextKey = if (photos.isEmpty()) null else position + 1
+                data = response.results,
+                prevKey = if (nextPageNumber > 0) nextPageNumber - 1 else null,
+                nextKey = if (nextPageNumber < response.totalPages) nextPageNumber + 1 else null
             )
-        } catch (exception: IOException) {
-            return LoadResult.Error(exception)
-        } catch (exception: HttpException) {
-            return LoadResult.Error(exception)
+        } catch (e: Exception) {
+            LoadResult.Error(e)
         }
     }
 }

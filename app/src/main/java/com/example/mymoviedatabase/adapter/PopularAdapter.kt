@@ -3,47 +3,42 @@ package com.example.mymoviedatabase.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.POSTER_BASE_URL
 import com.example.mymoviedatabase.R
+import com.example.mymoviedatabase.databinding.ItemPopularBinding
 
-import com.example.mymoviedatabase.model.ResultsItem
-import kotlinx.android.synthetic.main.popular_item.view.*
-
-class PopularAdapter : PagingDataAdapter<ResultsItem, PopularAdapter.PopularViewHolder>(PhotoComparator) {
-
-     class PopularViewHolder (view :View)
-        : RecyclerView.ViewHolder(view){
-
-//        val binding = PopularItemBinding.bind(view)
-
-        fun bindPost( movie : ResultsItem){
-
-            itemView.cv_movie_title.text = movie.title
+import com.example.mymoviedatabase.model.Movie
+import com.example.mymoviedatabase.utils.loadImage
 
 
+class PopularAdapter : PagingDataAdapter<Movie, PopularAdapter.PopularViewHolder>(PhotoComparator) {
+
+  inner   class PopularViewHolder (private val binding: ItemPopularBinding )
+        : RecyclerView.ViewHolder(binding.root){
+
+
+
+        fun bindPost( movie : Movie)= with(binding){
             val moviePosterURL = POSTER_BASE_URL + movie.posterPath
-            Glide.with(itemView.context)
-                .load(moviePosterURL)
-                .into(itemView.cv_iv_movie_poster);
+            moviePoster.loadImage(moviePosterURL)
+            movieTitle.text = movie.title
 
         }
     }
 
 
-    companion object PhotoComparator : DiffUtil.ItemCallback<ResultsItem>() {
-        override fun areItemsTheSame(oldItem: ResultsItem, newItem: ResultsItem): Boolean {
+    companion object PhotoComparator : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: ResultsItem,
-            newItem: ResultsItem
+            oldItem: Movie,
+            newItem: Movie
         ): Boolean {
             return oldItem == newItem
         }
@@ -58,6 +53,7 @@ class PopularAdapter : PagingDataAdapter<ResultsItem, PopularAdapter.PopularView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularViewHolder {
-        return PopularViewHolder (LayoutInflater.from(parent.context).inflate(R.layout.popular_item, parent, false))
+        return PopularViewHolder (ItemPopularBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false))
     }
 }

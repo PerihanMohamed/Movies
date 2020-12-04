@@ -3,7 +3,7 @@ package com.example.mymoviedatabase.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class ResultsItem(
+data class Movie(
 
 
 
@@ -23,7 +23,7 @@ data class ResultsItem(
 
 
     @field:SerializedName("id")
-    val id: Int?
+    val id: Int
 
 
 
