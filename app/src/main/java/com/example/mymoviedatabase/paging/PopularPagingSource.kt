@@ -39,7 +39,7 @@ class PopularPagingSource(
 //        }
 
         return try {
-            val nextPageNumber = params.key ?: 0
+            val nextPageNumber = params.key ?:GITHUB_STARTING_PAGE_INDEX
             val response = service.getPopular(nextPageNumber)
             LoadResult.Page(
                 data = response.results,
