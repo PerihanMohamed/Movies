@@ -15,7 +15,7 @@ import com.example.mymoviedatabase.model.Movie
 import com.example.mymoviedatabase.utils.loadImage
 
 
-class PopularAdapter : PagingDataAdapter<Movie, PopularAdapter.PopularViewHolder>(PhotoComparator) {
+class PopularAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<Movie, PopularAdapter.PopularViewHolder>(PhotoComparator) {
 
   inner   class PopularViewHolder (private val binding: ItemPopularBinding )
         : RecyclerView.ViewHolder(binding.root){
@@ -26,6 +26,19 @@ class PopularAdapter : PagingDataAdapter<Movie, PopularAdapter.PopularViewHolder
             val moviePosterURL = POSTER_BASE_URL + movie.posterPath
             moviePoster.loadImage(moviePosterURL)
             movieTitle.text = movie.title
+
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                 val position = bindingAdapterPosition
+                 if (position != RecyclerView.NO_POSITION) {
+                     val movie = getItem(position)
+                     if (movie != null)
+                        listener.onItemClick(movie)
+
+                 }
+            }
 
         }
     }
@@ -55,5 +68,9 @@ class PopularAdapter : PagingDataAdapter<Movie, PopularAdapter.PopularViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularViewHolder {
         return PopularViewHolder (ItemPopularBinding.inflate(
             LayoutInflater.from(parent.context), parent, false))
+    }
+
+    interface OnItemClickListener  {
+        fun onItemClick(movie: Movie)
     }
 }

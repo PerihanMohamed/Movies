@@ -9,5 +9,23 @@
         android:id="@+id/popular_fragment"
         android:name="com.example.mymoviedatabase.ui.popular.PopularFragment"
         android:label="popular_fragment"
-        tools:layout="@layout/fragment_popular" />
+        tools:layout="@layout/fragment_popular" >
+        <action
+            android:id="@+id/action_popular_fragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.mymoviedatabase.ui.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail"
+        >
+    <argument
+        android:name="movie"
+        app:argType="com.example.mymoviedatabase.model.Movie" />
+</fragment>
+
+
+
+
 </navigation>
