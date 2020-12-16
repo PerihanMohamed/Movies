@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymoviedatabase.R
 import com.example.mymoviedatabase.adapter.PopularAdapter
 
@@ -37,6 +36,8 @@ class PopularFragment : Fragment(R.layout.fragment_popular) ,PopularAdapter.OnIt
 
 
 
+
+
         lifecycleScope.launch {
             viewModel.Movies.collectLatest { pagedData ->
                 pAdapter.submitData(pagedData)
@@ -57,8 +58,11 @@ class PopularFragment : Fragment(R.layout.fragment_popular) ,PopularAdapter.OnIt
         _binding = null
     }
 
-    override fun onItemClick(movie: Movie) {
-       val action = PopularFragmentDirections.actionPopularFragmentToDetailFragment(movie)
+      override fun onItemClick(movie: Movie) {
+        val id = movie.id
+       val action = PopularFragmentDirections.actionPopularFragmentToDetailFragment(id)
+
+
         findNavController().navigate(action)
     }
 
