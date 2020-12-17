@@ -22,9 +22,8 @@
         tools:layout="@layout/fragment_detail"
         >
         <argument
-            android:name="id"
-            app:argType="integer"
-            android:defaultValue="1" />
+            android:name="movie"
+            app:argType="com.example.mymoviedatabase.model.Movie" />
     </fragment>
 
 

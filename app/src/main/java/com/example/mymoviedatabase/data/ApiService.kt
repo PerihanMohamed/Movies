@@ -2,9 +2,8 @@ package com.example.mymoviedatabase.data
 
 import com.example.mymoviedatabase.model.MovieDetails
 import com.example.mymoviedatabase.model.PopularResponse
-import com.example.mymoviedatabase.model.Resource
-import com.example.mymoviedatabase.model.ServiceResponse
 
+import com.example.mymoviedatabase.model.ServiceResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,6 +21,8 @@ interface ApiService {
     ) : PopularResponse
 
 
-    @GET("movie/id")
-    suspend fun getMovieDetail(@Path ("id") id : Int) : Response<MovieDetails>
+//    @GET("movie/{movie_id}")
+//    suspend fun getMovieDetail(@Path ("movie_id") id : Int) : Response<MovieDetails>
+    @GET("movie/{movie_id}")
+    suspend fun fetchMovieDetail(@Path ("movie_id") id : Int): Response<MovieDetails>
 }

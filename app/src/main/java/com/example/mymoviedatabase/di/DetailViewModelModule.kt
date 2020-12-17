@@ -16,7 +16,7 @@ class DetailViewModelModule @ViewModelInject constructor( val apiService: ApiSer
     fun loadMovie(id: Int)= liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data=apiService.getMovieDetail(id)))
+            emit(Resource.success(data=apiService.fetchMovieDetail(id)))
         }catch (exception: Exception){
             emit(Resource.error(data=null,message = exception.message?:"Error occured"))
         }

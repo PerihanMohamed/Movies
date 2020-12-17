@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class PopularFragment : Fragment(R.layout.fragment_popular) ,PopularAdapter.OnItemClickListener {
+ class PopularFragment : Fragment(R.layout.fragment_popular) ,PopularAdapter.OnItemClickListener {
 
     var _binding :FragmentPopularBinding ? = null
     private val binding get() =  _binding!!
@@ -58,12 +58,12 @@ class PopularFragment : Fragment(R.layout.fragment_popular) ,PopularAdapter.OnIt
         _binding = null
     }
 
-      override fun onItemClick(movie: Movie) {
-        val id = movie.id
-       val action = PopularFragmentDirections.actionPopularFragmentToDetailFragment(id)
 
 
+    override fun onItemClick(movie: Movie) {
+        val action = PopularFragmentDirections.actionPopularFragmentToDetailFragment(movie)
         findNavController().navigate(action)
+
     }
 
 }

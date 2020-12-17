@@ -23,3 +23,14 @@ data class MovieDetails(
     @SerializedName("vote_average")
     val rating: Double
 ) : Parcelable
+
+
+//data class MovieDetail(
+//    val id: Int,
+//    val title: String,
+//    val overview: String,
+//    val poster_path: String,
+//    val genres: List<GenreSingle>
+//)
+//
+//data class GenreSingle(val id: Int, val name: String)
