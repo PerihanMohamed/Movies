@@ -15,14 +15,26 @@ interface ApiService {
 
 
 
+
+
     @GET("movie/popular")
     suspend fun getPopular(
         @Query("page")page : Int
     ) : PopularResponse
 
+    @GET("movie/top_rated")
+    suspend fun getTopRated(
+        @Query("page")page: Int
+    ): PopularResponse
 
-//    @GET("movie/{movie_id}")
-//    suspend fun getMovieDetail(@Path ("movie_id") id : Int) : Response<MovieDetails>
+    @GET("movie/upcoming")
+    suspend fun  geUpcomingMovies(
+        @Query("page")page: Int
+    ):PopularResponse
+
+
+
+
     @GET("movie/{movie_id}")
     suspend fun fetchMovieDetail(@Path ("movie_id") id : Int): Response<MovieDetails>
 }

@@ -3,16 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item android:id="@+id/menu_populaق"
-        android:title="@string/menu_Popular"
+    <item
+        android:id="@+id/menu_item_popular_movies"
+        android:checked="true"
+        android:title="Popular"
         app:showAsAction="never" />
 
-    <item android:id="@+id/menu_top_rated"
-        android:title="@string/menu_top_rated"
+    <item
+        android:id="@+id/menu_item_top_rated"
+        android:title="Top Rated"
         app:showAsAction="never" />
 
-    <item android:id="@+id/menu_now_playing"
-        android:title="@string/menu_new_playing"
+    <item
+        android:id="@+id/menu_item_up_coming"
+        android:title="Upcoming"
         app:showAsAction="never" />
 
 

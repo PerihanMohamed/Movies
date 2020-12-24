@@ -2,16 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/person"
+        android:id="@+id/discover"
         android:title="Person"
-        android:icon="@drawable/ic_person_foreground"/>
+        android:icon="@drawable/ic_baseline_disc_full_24"/>
     <item
-        android:id="@+id/home"
+        android:id="@+id/favorite"
         android:title="Home"
-        android:icon="@drawable/ic_home_foreground"/>
-    <item
-        android:id="@+id/settings"
-        android:title="Settings"
-        android:icon="@drawable/ic_settings_foreground"/>
+        android:icon="@drawable/ic_baseline_favorite_24"/>
+
 
 </menu>
