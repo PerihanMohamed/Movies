@@ -2,24 +2,16 @@ package com.example.mymoviedatabase.paging
 
 import androidx.paging.PagingSource
 import com.example.mymoviedatabase.data.ApiService
-import com.example.mymoviedatabase.di.NetworkModule.getClient
+import com.example.mymoviedatabase.di.PopularViewModelModule
 
 import com.example.mymoviedatabase.model.Movie
-import com.example.mymoviedatabase.model.PopularResponse
-import com.example.mymoviedatabase.utils.Category
-
-import retrofit2.Call
-import retrofit2.HttpException
-import retrofit2.Response
-import java.io.IOException
 
 private const val GITHUB_STARTING_PAGE_INDEX = 1
 private const val FIRST_PAGE = 1
 
 class PopularPagingSource(
     private val service: ApiService,
-
-    private val category: Category
+    private  val sortBy: PopularViewModelModule.SortBy
     ) : PagingSource<Int, Movie>() {
 
 
@@ -30,14 +22,22 @@ class PopularPagingSource(
 
         return try {
             val nextPageNumber = params.key ?:GITHUB_STARTING_PAGE_INDEX
-            val response = getClient()
 
-            when (category){
-                Category.TOPRATED -> response.getTopRated(nextPageNumber)
-                Category.UPCOMING -> response.geUpcomingMovies(nextPageNumber)
-                else -> response.getPopular(nextPageNumber)
+            when (sortBy){
+                PopularViewModelModule.SortBy.UpComing -> {
+                    // fetch popular
+                }
+                PopularViewModelModule.SortBy.Top_Rated -> {
+                    // fetch to_rTED
+                }
+                else ->  {
+                    // fetch popular default
+                }
+
+
 
             }
+
 
             val responses = service.getPopular(nextPageNumber)
             LoadResult.Page(

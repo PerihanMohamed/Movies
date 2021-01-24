@@ -8,13 +8,14 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.example.mymoviedatabase.data.ApiService
 import com.example.mymoviedatabase.paging.PopularPagingSource
-import com.example.mymoviedatabase.utils.Category
 
-class PopularViewModelModule @ViewModelInject constructor(private val apiService: ApiService , private val category: Category) : ViewModel() {
+class PopularViewModelModule @ViewModelInject constructor(private val apiService: ApiService ) : ViewModel() {
 
     val Movies = Pager(PagingConfig(pageSize = 10)) {
-        PopularPagingSource(apiService , category)
+        PopularPagingSource(apiService )
     }.flow.cachedIn(viewModelScope)
+
+    enum class SortBy {Popular , Top_Rated , UpComing}
 
 }
 
