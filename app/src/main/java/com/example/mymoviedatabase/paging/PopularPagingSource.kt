@@ -11,7 +11,7 @@ private const val FIRST_PAGE = 1
 
 class PopularPagingSource(
     private val service: ApiService,
-    private  val sortBy: PopularViewModelModule.SortBy
+
     ) : PagingSource<Int, Movie>() {
 
 
@@ -23,20 +23,7 @@ class PopularPagingSource(
         return try {
             val nextPageNumber = params.key ?:GITHUB_STARTING_PAGE_INDEX
 
-            when (sortBy){
-                PopularViewModelModule.SortBy.UpComing -> {
-                    // fetch popular
-                }
-                PopularViewModelModule.SortBy.Top_Rated -> {
-                    // fetch to_rTED
-                }
-                else ->  {
-                    // fetch popular default
-                }
 
-
-
-            }
 
 
             val responses = service.getPopular(nextPageNumber)

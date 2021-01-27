@@ -31,31 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val menuInflater = menuInflater
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
-        return when (item.itemId) {
-            R.id.menu_item_top_rated -> {
-
-                true
-            }
-            R.id.menu_item_popular_movies -> {
-
-                true
-            }
-            R.id.menu_item_up_coming ->{
-
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-
-    }
 
     }
 

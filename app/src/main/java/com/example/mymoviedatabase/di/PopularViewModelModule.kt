@@ -15,7 +15,7 @@ class PopularViewModelModule @ViewModelInject constructor(private val apiService
         PopularPagingSource(apiService )
     }.flow.cachedIn(viewModelScope)
 
-    enum class SortBy {Popular , Top_Rated , UpComing}
+
 
 }
 
